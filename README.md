@@ -1,13 +1,15 @@
-1. Create s3 bucket name `example.bucket`
-2. Edit `index.html` 2 lines:
+# How to implement this:
+
+## 1. Create s3 bucket name `example.bucket`
+## 2. Edit `index.html` 2 lines:
 ```
   var S3BL_IGNORE_PATH = false;
   var BUCKET_URL = 'https://example.bucket.s3-ap-northeast-1.amazonaws.com';
 ```
-3. Upload `index.html` and `list.js` to s3 bucket
-4. Tab `Permission`, select `Block public access`, Edit, Uncheck to turn off.
-5. Tab `Permission`, select `Access Control List`, select `Public access`, Grant everyone to `List Object` and `Read bucket permissions`
-6. Tab `Permission`, select `Bucket Policy`, paste following code then Save:
+## 3. Upload `index.html` and `list.js` to s3 bucket
+## 4. Tab `Permission`, select `Block public access`, Edit, Uncheck to turn off.
+## 5. Tab `Permission`, select `Access Control List`, select `Public access`, Grant everyone to `List Object` and `Read bucket permissions`
+## 6. Tab `Permission`, select `Bucket Policy`, paste following code then Save:
     (Note that you must change `example.bucket` to your own bucket name)
 ```
  {
@@ -25,7 +27,7 @@
     ]
 }
 ```
-7. Tab `Permission`, select `CORS configuration`, paste following code then Save:
+## 7. Tab `Permission`, select `CORS configuration`, paste following code then Save:
 ```
 <CORSConfiguration>
  <CORSRule>
@@ -35,9 +37,9 @@
  </CORSRule>
 </CORSConfiguration>
 ```
-8. Select tab `Properties`, select `Static website hosting`, select `Use this to host website`,
+## 8. Select tab `Properties`, select `Static website hosting`, select `Use this to host website`,
 paste `index.html` to "Index document" and "Error document", save.
 
-9. Access to Endpoint : http://example.bucket.s3-website-ap-northeast-1.amazonaws.com
+## 9. Access to Endpoint : http://example.bucket.s3-website-ap-northeast-1.amazonaws.com
 
 Done!
