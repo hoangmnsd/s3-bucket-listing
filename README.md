@@ -1,3 +1,5 @@
+Modified from https://github.com/rufuspollock/s3-bucket-listing
+
 # How to implement this:
 
 1. Create s3 bucket name `example.bucket`
