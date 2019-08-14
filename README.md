@@ -5,8 +5,8 @@ Modified from https://github.com/rufuspollock/s3-bucket-listing
 1. Create s3 bucket name `example.bucket`
 2. Edit `index.html` 2 lines:
 ```
-  var S3BL_IGNORE_PATH = false;
-  var BUCKET_URL = 'https://example.bucket.s3-ap-northeast-1.amazonaws.com';
+  var S3BL_IGNORE_PATH = true;
+  var BUCKET_URL = 'http://example.bucket.s3-ap-northeast-1.amazonaws.com';
 ```
 3. Upload `index.html` and `list.js` to s3 bucket
 4. Tab `Permission`, select `Block public access`, Edit, Uncheck to turn off.
@@ -14,17 +14,22 @@ Modified from https://github.com/rufuspollock/s3-bucket-listing
 6. Tab `Permission`, select `Bucket Policy`, edit following code then paste and Save:
     (Note that you must change `example.bucket` to your own bucket name)
 ```
- {
+{
     "Version": "2008-10-17",
     "Statement": [
         {
             "Sid": "AllowPublicRead",
             "Effect": "Allow",
-            "Principal": {
-                "AWS": "*"
-            },
+            "Principal": "*",
             "Action": "s3:GetObject",
             "Resource": "arn:aws:s3:::example.bucket/*"
+        },
+        {
+            "Sid": "AllowPublicList",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::example.bucket"
         }
     ]
 }
